@@ -17,5 +17,15 @@ namespace library.Data
         public DbSet<library.Models.Autor> Autor { get; set; } = default!;
 
         public DbSet<library.Models.Livro>? Livro { get; set; }
+
+        /*
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Autor>().HasData(
+                new Autor( INFO ),
+                new Autor( INFO )
+                );
+        }
+        */
     }
 }
