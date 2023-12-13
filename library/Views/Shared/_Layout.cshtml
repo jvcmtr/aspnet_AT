@@ -48,9 +48,10 @@
             }
             else
             {
-                @{ var url = Context.Request.Path;}
+                var url = Context.Request.Path;
                 <p>você está em @url.Value </p>
             }
+
             <p>Picture content goes here.</p>
         </div>
     </footer>
