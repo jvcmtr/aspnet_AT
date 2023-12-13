@@ -40,6 +40,19 @@
         <div class="container">
             &copy; 2023 - library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+        <div class="container">
+            
+            @if (IsSectionDefined("OtherPages"))
+            {
+                @RenderSection("OtherPages")
+            }
+            else
+            {
+                @{ var url = Context.Request.Path;}
+                <p>você está em @url.Value </p>
+            }
+            <p>Picture content goes here.</p>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
