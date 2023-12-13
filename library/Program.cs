@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using library.Data;
 namespace library
 {
     public class Program
@@ -5,6 +8,8 @@ namespace library
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<libraryContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("libraryContext") ?? throw new InvalidOperationException("Connection string 'libraryContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
