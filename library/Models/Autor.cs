@@ -12,6 +12,9 @@ namespace library.Models
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public DateTime birth { get; set; }
+
         [NotMapped]
         public IFormFile Upload { get; set; }
         public string ImageFile { get; set; }
