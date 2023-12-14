@@ -25,7 +25,7 @@ namespace library.Models
         public Autor? Autor { get; set; }
         public Genero? Genero { get; set; }
 
-        [MaxLength(150, ErrorMessage = "max length is 30")]
+        [MaxLength(600, ErrorMessage = "max length is 600")]
         public string? Sinopse { get; set; }
     }
 }

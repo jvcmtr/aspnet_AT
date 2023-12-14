@@ -22,7 +22,7 @@ namespace library.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Genero>().HasData(
+            Genero[] generos = new Genero[]{
                 new Genero() { Id = 1, Name = "Terror"},
                 new Genero() { Id = 2, Name = "Ação" },
                 new Genero() { Id = 3, Name = "Aventura" },
@@ -35,7 +35,64 @@ namespace library.Data
                 new Genero() { Id = 10,Name = "Filosofia" },
                 new Genero() { Id = 11,Name = "Quadrinhos" },
                 new Genero() { Id = 12,Name = "Culinaria" }
-                );
+            };
+            
+            Autor[] autores = new Autor[]{
+                new Autor(){
+                    Id = 1,
+                    FirstName = "JRR",
+                    LastName = "Tolkien",
+                    birth = new DateTime(1892, 1, 3),
+                    ImageFile = "JRR.jpg"
+                },
+                new Autor(){
+                    Id = 2,
+                    FirstName = "Echiro",
+                    LastName = "Oda",
+                    birth = new DateTime(1975, 1, 1),
+                    ImageFile = "oda.jpg"
+                },
+                new Autor(){
+                    Id = 3,
+                    FirstName = "Étienne",
+                    LastName = "de La Boétie",
+                    birth = new DateTime(1530, 11, 1),
+                    ImageFile = "default.jpg"
+                }
+            };
+        
+            modelBuilder.Entity<Genero>().HasData(generos);
+            modelBuilder.Entity<Autor>().HasData(autores);
+
+            modelBuilder.Entity<Livro>().HasData(
+                new Livro()
+                {
+                    Id = 1,
+                    ISBN = "11-11-11-11",
+                    Name = "O Hobbit",
+                    DataDePublicacao = new DateTime(1937, 9, 21),
+                    AutorId = 1,
+                    GeneroId = 3
+                },
+                new Livro()
+                {
+                    Id = 2,
+                    ISBN = "Melhor quadrinho já publicado",
+                    Name = "One Piece",
+                    DataDePublicacao= new DateTime(1997, 7, 19),
+                    AutorId = 2,
+                    GeneroId = 3
+                },
+                new Livro()
+                {
+                    Id = 3,
+                    ISBN = "Recomendo Fortemente",
+                    Name = "Discurso sobre a servidão voluntária",
+                    Sinopse = "é uma crítica à legitimidade dos governantes, chamados por ele de “tiranos”. La Boétie explica de que maneira os povos podem se submeter voluntariamente ao governo de um só homem... [Fonte Wikipedia]",
+                    AutorId = 3,
+                    DataDePublicacao= new DateTime(1548, 1, 1),
+                    GeneroId = 10
+                });
         }
 
     }

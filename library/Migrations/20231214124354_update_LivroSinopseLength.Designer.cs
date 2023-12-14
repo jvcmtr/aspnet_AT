@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using library.Data;
 
@@ -11,9 +12,10 @@ using library.Data;
 namespace library.Migrations
 {
     [DbContext(typeof(libraryContext))]
-    partial class libraryContextModelSnapshot : ModelSnapshot
+    [Migration("20231214124354_update_LivroSinopseLength")]
+    partial class update_LivroSinopseLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,39 +202,6 @@ namespace library.Migrations
                     b.HasIndex("GeneroId");
 
                     b.ToTable("Livro");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AutorId = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataDePublicacao = new DateTime(1937, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GeneroId = 3,
-                            ISBN = "11-11-11-11",
-                            Name = "O Hobbit"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AutorId = 2,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataDePublicacao = new DateTime(1997, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GeneroId = 3,
-                            ISBN = "Melhor quadrinho já publicado",
-                            Name = "One Piece"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AutorId = 3,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataDePublicacao = new DateTime(1548, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GeneroId = 10,
-                            ISBN = "Recomendo Fortemente",
-                            Name = "Discurso sobre a servidão voluntária",
-                            Sinopse = "é uma crítica à legitimidade dos governantes, chamados por ele de “tiranos”. La Boétie explica de que maneira os povos podem se submeter voluntariamente ao governo de um só homem... [Fonte Wikipedia]"
-                        });
                 });
 
             modelBuilder.Entity("library.Models.Livro", b =>
