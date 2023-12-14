@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using library.Data;
 
@@ -11,9 +12,10 @@ using library.Data;
 namespace library.Migrations
 {
     [DbContext(typeof(libraryContext))]
-    partial class libraryContextModelSnapshot : ModelSnapshot
+    [Migration("20231214054654_updateModel")]
+    partial class updateModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,23 +55,6 @@ namespace library.Migrations
                     b.ToTable("Autor");
                 });
 
-            modelBuilder.Entity("library.Models.Genero", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genero");
-                });
-
             modelBuilder.Entity("library.Models.Livro", b =>
                 {
                     b.Property<int>("Id")
@@ -78,17 +63,8 @@ namespace library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AutorId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataDePublicacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GeneroId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ISBN")
                         .IsRequired()
@@ -105,30 +81,7 @@ namespace library.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AutorId");
-
-                    b.HasIndex("GeneroId");
-
                     b.ToTable("Livro");
-                });
-
-            modelBuilder.Entity("library.Models.Livro", b =>
-                {
-                    b.HasOne("library.Models.Autor", "Autor")
-                        .WithMany()
-                        .HasForeignKey("AutorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("library.Models.Genero", "Genero")
-                        .WithMany()
-                        .HasForeignKey("GeneroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Autor");
-
-                    b.Navigation("Genero");
                 });
 #pragma warning restore 612, 618
         }
