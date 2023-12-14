@@ -23,12 +23,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageFile)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageFile)
-        </dd>
+
+        <img src="~/images/@Model.ImageFile" style="width:200px; height;200px" />
+        
+        "~/images/"
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Created)
         </dt>
