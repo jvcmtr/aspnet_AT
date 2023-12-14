@@ -32,6 +32,8 @@
                 <input asp-for="Upload" class="form-control" />
                 <span asp-validation-for="Upload" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Created" value="@Model.Created" />
+            <input type="hidden" asp-for="ImageFile" value="@Model.ImageFile" />
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

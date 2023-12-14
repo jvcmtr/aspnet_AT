@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using library.Data;
 
@@ -11,9 +12,10 @@ using library.Data;
 namespace library.Migrations
 {
     [DbContext(typeof(libraryContext))]
-    partial class libraryContextModelSnapshot : ModelSnapshot
+    [Migration("20231214063908_dtSeed")]
+    partial class dtSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("birth")
+                    b.Property<DateTime>("birth")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -146,7 +148,7 @@ namespace library.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataDePublicacao")
+                    b.Property<DateTime>("DataDePublicacao")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GeneroId")
@@ -161,6 +163,7 @@ namespace library.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sinopse")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 

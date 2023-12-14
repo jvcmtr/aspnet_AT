@@ -100,13 +100,10 @@ namespace library.Controllers
         // POST: Autors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,birth,Upload,Id")] Autor autor)
+        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,birth,Upload,Created,ImageFile,Id")] Autor autor)
         {
             if (id != autor.Id)
                 return NotFound();
-
-            var oldAutor = await _context.Autor.FindAsync(id);
-            autor.Created = oldAutor.Created;
 
             if (autor.Upload is not null)
             {
@@ -117,10 +114,6 @@ namespace library.Controllers
                 {
                     autor.Upload.CopyTo(stream);
                 }
-            }
-            else
-            {
-                autor.ImageFile = oldAutor.ImageFile;
             }
 
 
@@ -144,6 +137,9 @@ namespace library.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            Console.WriteLine(errors);
             return View(autor);
         }
 

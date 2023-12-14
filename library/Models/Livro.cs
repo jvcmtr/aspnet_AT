@@ -16,18 +16,16 @@ namespace library.Models
         [ForeignKey("Autor")]
         public int AutorId { get; set; }
 
-        [Required]
-        public DateTime DataDePublicacao { get; set; }
+        public DateTime? DataDePublicacao { get; set; }
 
         [Required]
         [ForeignKey("Genero")]
         public int GeneroId { get; set; }
 
-        public Autor Autor { get; set; }
-        public Genero Genero { get; set; }
+        public Autor? Autor { get; set; }
+        public Genero? Genero { get; set; }
 
-        [Required]
         [MaxLength(150, ErrorMessage = "max length is 30")]
-        public string Sinopse { get; set; }
+        public string? Sinopse { get; set; }
     }
 }

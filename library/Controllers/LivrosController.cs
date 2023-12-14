@@ -48,16 +48,18 @@ namespace library.Controllers
         // GET: Livros/Create
         public IActionResult Create()
         {
+            ViewData["AutorId"] = new SelectList(_context.Autor, "Id", "LastName");
+            ViewData["GeneroId"] = new SelectList(_context.Genero, "Id", "Name");
             return View();
         }
 
         // POST: Livros/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
+        public async Task<IActionResult> Create([Bind("ISBN,Name,AutorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
         {
-
             livro.Created = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(livro);
@@ -80,13 +82,16 @@ namespace library.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["AutorId"] = new SelectList(_context.Autor, "Id", "LastName");
+            ViewData["GeneroId"] = new SelectList(_context.Genero, "Id", "Name");
             return View(livro);
         }
 
         // POST: Livros/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
+        public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,AutorId,GeneroId,Sinopse,DataDePublicacao,Created,Id")] Livro livro)
         {
             Console.WriteLine(livro.Created.ToString());
             if (id != livro.Id)
