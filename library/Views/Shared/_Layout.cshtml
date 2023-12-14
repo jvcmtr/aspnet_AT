@@ -20,10 +20,11 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Autors" asp-action="Index">Autores</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Autors" asp-action="Index">Autores</a>
                         </li>
+                        <li></li>
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Livros" asp-action="Index">Livros</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Livros" asp-action="Index">Livros</a>
                         </li>
                     </ul>
                 </div>
@@ -38,9 +39,6 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-        <div class="container">
             
             @if (IsSectionDefined("OtherPages"))
             {
@@ -51,8 +49,6 @@
                 var url = Context.Request.Path;
                 <p>você está em @url.Value </p>
             }
-
-            <p>Picture content goes here.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

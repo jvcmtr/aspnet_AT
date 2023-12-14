@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)</h1>
 
 <div>
     <h4>Autor</h4>
@@ -46,5 +46,5 @@
 
 @section OtherPages
 {
-    <a class="nav-link text-dark" asp-area="" asp-controller="Livros" asp-action="Index">veja o nosso repositório de livros</a>
+    <a asp-area="" asp-controller="Livros" asp-action="Index">veja o nosso repositório de livros</a>
 }
