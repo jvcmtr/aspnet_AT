@@ -45,7 +45,8 @@ namespace library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("birth")
+                    b.Property<DateTime?>("birth")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

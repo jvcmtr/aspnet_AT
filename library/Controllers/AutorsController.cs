@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using library.Data;
 using library.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace library.Controllers
 {
     public class AutorsController : Controller
     {
         private readonly libraryContext _context;
+        private readonly IWebHostEnvironment webEnv;
 
-        public AutorsController(libraryContext context)
+        public AutorsController(libraryContext context, IWebHostEnvironment webEnv)
         {
+            this.webEnv = webEnv;
             _context = context;
         }
 
@@ -54,9 +57,21 @@ namespace library.Controllers
         // POST: Autors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName, birth,ImageFile,Id")] Autor autor)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,birth,Upload,ImageFile")] Autor autor)
         {
             autor.Created = DateTime.Now;
+            autor.ImageFile = "default.jpg";
+
+            if (autor.Upload is not null)
+            {
+                autor.ImageFile = autor.Upload.FileName;
+                var img = Path.Combine(webEnv.ContentRootPath, "wwwroot/images/", autor.Id+autor.ImageFile);
+
+                using (var stream = new FileStream(img, FileMode.Create)){
+                    autor.Upload.CopyTo(stream);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(autor);
@@ -85,12 +100,29 @@ namespace library.Controllers
         // POST: Autors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName, birth,ImageFile,Id")] Autor autor)
+        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,birth,Upload,Id")] Autor autor)
         {
             if (id != autor.Id)
-            {
                 return NotFound();
+
+            var oldAutor = await _context.Autor.FindAsync(id);
+            autor.Created = oldAutor.Created;
+
+            if (autor.Upload is not null)
+            {
+                autor.ImageFile = autor.Upload.Name;
+                var img = Path.Combine(webEnv.ContentRootPath, "wwwroot/images/", autor.ImageFile);
+
+                using (var stream = new FileStream(img, FileMode.Create))
+                {
+                    autor.Upload.CopyTo(stream);
+                }
             }
+            else
+            {
+                autor.ImageFile = oldAutor.ImageFile;
+            }
+
 
             if (ModelState.IsValid)
             {
