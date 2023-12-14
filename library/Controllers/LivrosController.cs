@@ -52,8 +52,6 @@ namespace library.Controllers
         }
 
         // POST: Livros/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
@@ -86,8 +84,6 @@ namespace library.Controllers
         }
 
         // POST: Livros/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)

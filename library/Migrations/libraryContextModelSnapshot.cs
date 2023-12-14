@@ -68,6 +68,68 @@ namespace library.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genero");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Terror"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Ação"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Aventura"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Suspense"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Romance"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Erotico"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Misterio"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Cronica"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Historico"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Filosofia"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Quadrinhos"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Culinaria"
+                        });
                 });
 
             modelBuilder.Entity("library.Models.Livro", b =>
