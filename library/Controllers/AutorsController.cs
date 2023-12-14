@@ -52,12 +52,11 @@ namespace library.Controllers
         }
 
         // POST: Autors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,ImageFile,Id,Created")] Autor autor)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName, birth,ImageFile,Id")] Autor autor)
         {
+            autor.Created = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(autor);
@@ -84,11 +83,9 @@ namespace library.Controllers
         }
 
         // POST: Autors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,ImageFile,Id,Created")] Autor autor)
+        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName, birth,ImageFile,Id")] Autor autor)
         {
             if (id != autor.Id)
             {

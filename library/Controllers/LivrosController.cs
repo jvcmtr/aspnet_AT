@@ -56,8 +56,10 @@ namespace library.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ISBN,Name,Sinopse,Id,Created")] Livro livro)
+        public async Task<IActionResult> Create([Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
         {
+
+            livro.Created = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(livro);
@@ -88,8 +90,9 @@ namespace library.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,Sinopse,Id,Created")] Livro livro)
+        public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,AuthorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
         {
+            Console.WriteLine(livro.Created.ToString());
             if (id != livro.Id)
             {
                 return NotFound();

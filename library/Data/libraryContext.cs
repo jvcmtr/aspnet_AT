@@ -18,6 +18,8 @@ namespace library.Data
 
         public DbSet<library.Models.Livro>? Livro { get; set; }
 
+        //public DbSet<library.Models.Genero>? Genero { get; set; }
+
         /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
