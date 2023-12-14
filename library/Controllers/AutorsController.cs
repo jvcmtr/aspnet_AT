@@ -23,6 +23,7 @@ namespace library.Controllers
         }
 
         // GET: Autors
+        [Route("/Autors")]
         public async Task<IActionResult> Index()
         {
               return _context.Autor != null ? 
@@ -31,6 +32,8 @@ namespace library.Controllers
         }
 
         // GET: Autors/Details/5
+
+        [Route("/Autors/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Autor == null)
@@ -48,7 +51,8 @@ namespace library.Controllers
             return View(autor);
         }
 
-        // GET: Autors/Create
+        // GET:
+        [Route("/Autors/Add")]
         public IActionResult Create()
         {
             return View();
@@ -57,6 +61,7 @@ namespace library.Controllers
         // POST: Autors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/Autors/Add")]
         public async Task<IActionResult> Create([Bind("FirstName,LastName,birth,Upload,ImageFile")] Autor autor)
         {
             autor.Created = DateTime.Now;
@@ -82,6 +87,7 @@ namespace library.Controllers
         }
 
         // GET: Autors/Edit/5
+        [Route("/Autors/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Autor == null)
@@ -100,6 +106,7 @@ namespace library.Controllers
         // POST: Autors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/Autors/Edit/{id}")]
         public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,birth,Upload,Created,ImageFile,Id")] Autor autor)
         {
             if (id != autor.Id)

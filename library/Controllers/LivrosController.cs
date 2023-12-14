@@ -20,6 +20,7 @@ namespace library.Controllers
         }
 
         // GET: Livros
+        [Route("/Livros")]
         public async Task<IActionResult> Index()
         {
               return _context.Livro != null ? 
@@ -28,6 +29,7 @@ namespace library.Controllers
         }
 
         // GET: Livros/Details/5
+        [Route("/Livros/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Livro == null)
@@ -46,6 +48,7 @@ namespace library.Controllers
         }
 
         // GET: Livros/Create
+        [Route("/Livros/Add")]
         public IActionResult Create()
         {
             ViewData["AutorId"] = new SelectList(_context.Autor, "Id", "LastName");
@@ -56,6 +59,7 @@ namespace library.Controllers
         // POST: Livros/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/Livros/Add")]
         public async Task<IActionResult> Create([Bind("ISBN,Name,AutorId,GeneroId,Sinopse,DataDePublicacao,Id")] Livro livro)
         {
             livro.Created = DateTime.Now;
@@ -70,6 +74,7 @@ namespace library.Controllers
         }
 
         // GET: Livros/Edit/5
+        [Route("/Livros/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Livro == null)
@@ -91,6 +96,7 @@ namespace library.Controllers
         // POST: Livros/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/Livros/Edit/{id}")]
         public async Task<IActionResult> Edit(int id, [Bind("ISBN,Name,AutorId,GeneroId,Sinopse,DataDePublicacao,Created,Id")] Livro livro)
         {
             Console.WriteLine(livro.Created.ToString());
